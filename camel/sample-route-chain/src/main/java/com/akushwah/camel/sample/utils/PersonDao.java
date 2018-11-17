@@ -15,7 +15,7 @@ public class PersonDao {
         return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM PERSON", Integer.class);
     }
     
-    public int saveMessage(String name, int id) {
+    public int savePerson(String name, int id) {
         return jdbcTemplate.update("INSERT INTO PERSON" + "(id, name) values" + "(?,?)", id, name);
     }
 }

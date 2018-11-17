@@ -62,16 +62,15 @@ public class Attempt1Test extends CamelTestSupport {
 
     @Test
     public void testInOnlyMessage() {
-        String message = "hello";
+        String message = "akash,1;kushwah,2";
 
-        String expectedResponse = "Processor 2 finished";
         out.setExpectedMessageCount(1);
 
 //        in.sendBody(message);
         
         try {
         	String response = (String) in.requestBody(message);
-            assertEquals(expectedResponse, response);
+            assertEquals(message, response);
 			assertMockEndpointsSatisfied();
 		} catch (Exception e) {
 			System.out.println("Issues while testing");

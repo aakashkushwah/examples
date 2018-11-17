@@ -20,10 +20,15 @@ public class Attempt1Route extends RouteBuilder {
 	public void configure() throws Exception {
 		errorHandler(defaultErrorHandler().maximumRedeliveries(2));
 
-		from("direct:A").transform(constant("Ping")).to("seda:myrunningphase");
+		from("direct:A").to("seda:myrunningphase");
+//		from("direct:A").transform(constant("Ping")).to("seda:myrunningphase");
 
-		from("seda:myrunningphase").startupOrder(1).transacted().process(new MyProcessor1(new PersonDao(dataSource)))
-				.process(new MyProcessor2(new EmployeeDao(dataSource))).to("mock:out");
+		from("seda:myrunningphase")
+			.startupOrder(1)
+			.transacted()
+			.process(new MyProcessor1(new PersonDao(dataSource)))
+			.process(new MyProcessor2(new EmployeeDao(dataSource)))
+			.to("mock:out");
 	}
 
 }

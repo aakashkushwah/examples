@@ -18,9 +18,16 @@ public class MyProcessor2 implements Processor {
     @Override
     public void process(Exchange exchange) throws Exception {
         Thread.sleep(DELAY_TIME);
-        exchange.getIn().setBody("Processor 2 finished");
-        empDao.saveEmployee("HCL", 4);
-//        empDao.saveEmployee("HCL", 4);
+        String records = exchange.getIn().getBody(String.class);
+		String[] recordStrs = records.split(";");
+		for (String recordStr : recordStrs) {
+			String name = recordStr.split(",")[0];
+			if(name.equals("aakash")) {
+				throw new Exception("Processor 2 exception");
+			}
+			int id = Integer.parseInt(recordStr.split(",")[1]);
+			empDao.saveEmployee(name, id);
+		}
     }
 
 }
