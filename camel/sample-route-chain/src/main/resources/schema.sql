@@ -29,4 +29,9 @@ create table EMPLOYEE (
 	name varchar(255)
 );
 
+create table Manager (
+	id int primary key, 
+	name varchar(255)
+);
+
 commit;

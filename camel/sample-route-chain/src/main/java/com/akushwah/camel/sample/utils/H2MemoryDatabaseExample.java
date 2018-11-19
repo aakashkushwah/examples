@@ -48,6 +48,25 @@ public class H2MemoryDatabaseExample {
 		}
 	}
 	
+	public static void printManagerRecords() throws SQLException {
+		Connection connection = getDBConnection();
+		PreparedStatement selectPreparedStatement = null;
+		String SelectQuery = "select * from MANAGER";
+		try {
+			selectPreparedStatement = connection.prepareStatement(SelectQuery);
+			ResultSet rs = selectPreparedStatement.executeQuery();
+			System.out.println("MANAGER RECORDS");
+			while (rs.next()) {
+				System.out.println("Id " + rs.getInt("id") + " Name " + rs.getString("name"));
+			}
+			selectPreparedStatement.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connection.close();
+		}
+	}
+	
 	public static void printEmployeeRecords() throws SQLException {
 		Connection connection = getDBConnection();
 		PreparedStatement selectPreparedStatement = null;

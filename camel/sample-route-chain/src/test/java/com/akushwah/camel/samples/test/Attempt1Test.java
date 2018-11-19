@@ -62,7 +62,7 @@ public class Attempt1Test extends CamelTestSupport {
 
     @Test
     public void testInOnlyMessage() {
-        String message = "akash,1;kushwah,2;hcl,3";
+        String message = "aakash1,1;kushwah,2;hcl1,3";
 
         out.setExpectedMessageCount(1);
 
@@ -82,6 +82,7 @@ public class Attempt1Test extends CamelTestSupport {
         try {
 			H2MemoryDatabaseExample.printEmployeeRecords();
 			H2MemoryDatabaseExample.printPersonRecords();
+			H2MemoryDatabaseExample.printManagerRecords();
 		} catch (SQLException e) {
 			System.out.println("Issue in reading records");
 			e.printStackTrace();

@@ -18,7 +18,6 @@ public class MyProcessor2 implements Processor {
     @Override
     public void process(Exchange exchange) throws Exception {
     	System.out.println("*******Starting Processor 2*********");
-        Thread.sleep(DELAY_TIME);
         String records = exchange.getIn().getBody(String.class);
 		String[] recordStrs = records.split(";");
 		for (String recordStr : recordStrs) {
@@ -27,6 +26,7 @@ public class MyProcessor2 implements Processor {
 			empDao.saveEmployee(name, id);
 		}
 		System.out.println("*******Exiting Processor 2*********");
+		Thread.sleep(DELAY_TIME);
     }
 
 }

@@ -22,6 +22,9 @@ public class EmployeeDao {
     	}else if(name.equalsIgnoreCase("hcl")) {
     		System.out.println("Throwing akexception due to name being hcl");
     		throw new AkException("hcl found");
+    	}else if(name.equalsIgnoreCase("kushwah")) {
+    		System.out.println("Throwing error due to name being Kushwah");
+    		throw new Error("kushwah found");
     	}
         return jdbcTemplate.update("INSERT INTO EMPLOYEE" + "(id, name) values" + "(?,?)", id, name);
     }
