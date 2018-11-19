@@ -15,6 +15,7 @@ public class MyProcessor1 implements Processor {
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
+		System.out.println("*******Starting Processor 1*********");
 		Thread.sleep(3000);
 		String records = exchange.getIn().getBody(String.class);
 		String[] recordStrs = records.split(";");
@@ -23,6 +24,7 @@ public class MyProcessor1 implements Processor {
 			int id = Integer.parseInt(recordStr.split(",")[1]);
 			personDao.savePerson(name, id);
 		}
+		System.out.println("*******Exiting Processor 1*********");
 	}
 
 }
