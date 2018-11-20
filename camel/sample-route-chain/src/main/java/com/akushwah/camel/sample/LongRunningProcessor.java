@@ -1,4 +1,4 @@
-package com.akushwah.camel.samples;
+package com.akushwah.camel.sample;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;

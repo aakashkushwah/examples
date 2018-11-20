@@ -1,4 +1,4 @@
-package com.akushwah.camel.samples.test;
+package com.akushwah.camel.sample.test;
 
 import java.sql.SQLException;
 

@@ -1,4 +1,4 @@
-package com.akushwah.camel.samples.test;
+package com.akushwah.camel.sample.test;
 
 import org.apache.camel.EndpointInject;
 import org.apache.camel.builder.RouteBuilder;
@@ -6,8 +6,8 @@ import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
-import com.akushwah.camel.samples.LongRunningProcessor;
-import com.akushwah.camel.samples.SedaTimerRoute;
+import com.akushwah.camel.sample.LongRunningProcessor;
+import com.akushwah.camel.sample.SedaTimerRoute;
 
 public class SedaTimerTest extends CamelTestSupport {
     @EndpointInject(uri = "mock:out")
