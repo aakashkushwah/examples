@@ -12,7 +12,6 @@ public class App {
 		Consumer c = new Consumer(queue);
 		new Thread(p).start();
 		new Thread(c).start();
-		
 	
 	}
 }

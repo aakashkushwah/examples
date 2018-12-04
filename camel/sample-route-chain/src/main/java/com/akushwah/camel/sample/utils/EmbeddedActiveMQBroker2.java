@@ -23,13 +23,10 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.ActiveMQPrefetchPolicy;
 import org.apache.activemq.broker.BrokerService;
 import org.apache.activemq.camel.component.ActiveMQComponent;
-import org.apache.activemq.camel.component.ActiveMQConfiguration;
 import org.apache.activemq.jms.pool.PooledConnectionFactory;
 import org.apache.activemq.store.jdbc.JDBCPersistenceAdapter;
-import org.apache.activemq.store.memory.MemoryPersistenceAdapter;
 import org.apache.camel.component.jms.JmsConfiguration;
 import org.apache.camel.test.AvailablePortFinder;
-import org.apache.commons.lang.Validate;
 import org.junit.rules.ExternalResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,65 +36,19 @@ import org.springframework.jms.core.JmsTemplate;
 /**
  * JUnit Test aspect that creates an embedded ActiveMQ broker at the beginning of eac h test and shuts it down after.
  */
-public class EmbeddedActiveMQBroker extends ExternalResource {
+public class EmbeddedActiveMQBroker2 extends ExternalResource {
 
-    private final Logger log = LoggerFactory.getLogger(EmbeddedActiveMQBroker.class);
+    private final Logger log = LoggerFactory.getLogger(EmbeddedActiveMQBroker2.class);
     private final String brokerId;
     private BrokerService brokerService;
     private final String tcpConnectorUri;
     private DataSource dataSource;
     private ActiveMQConnectionFactory connectionFactory;
     private ActiveMQComponent activeMQComponent;
-
-    public EmbeddedActiveMQBroker(String brokerId) {
-        Validate.notEmpty(brokerId, "brokerId is empty");
-        this.brokerId = brokerId;
-        tcpConnectorUri = "tcp://localhost:" + AvailablePortFinder.getNextAvailable();
-
-        brokerService = new BrokerService();
-        brokerService.setBrokerId(brokerId);
-        brokerService.setPersistent(false);
-        brokerService.setUseJmx(false);
-        try {
-            brokerService.setPersistenceAdapter(new MemoryPersistenceAdapter());
-            brokerService.addConnector(tcpConnectorUri);
-        } catch (Exception e) {
-            throw new RuntimeException("Problem creating brokerService", e);
-        }
-    }
-    
-    
-    
-    public EmbeddedActiveMQBroker() {
-    	this.brokerId = "embeddedBroker";
-        tcpConnectorUri = "tcp://localhost:" + AvailablePortFinder.getNextAvailable();
-        
-        connectionFactory = new ActiveMQConnectionFactory();
-		connectionFactory.setBrokerURL(tcpConnectorUri);
-		
-
-		JmsTemplate jmsTemplate = new JmsTemplate();
-		jmsTemplate.setConnectionFactory(connectionFactory);
-		jmsTemplate.setSessionTransacted(true);
-
-		dataSource = EmbeddedDataSourceJMSAwareFactory.getDataSource(jmsTemplate);
-		brokerService = new BrokerService();
-		JDBCPersistenceAdapter jdbcPersistenceAdapter = new JDBCPersistenceAdapter();
-		jdbcPersistenceAdapter.setDataSource(dataSource);
-		jdbcPersistenceAdapter.setCreateTablesOnStartup(true);
-
-        brokerService.setBrokerId(this.brokerId);
-        brokerService.setPersistent(false);
-        brokerService.setUseJmx(false);
-        try {
-        	brokerService.setPersistenceAdapter(jdbcPersistenceAdapter);
-        	brokerService.addConnector(tcpConnectorUri);
-        } catch (Exception e) {
-            throw new RuntimeException("Problem creating brokerService", e);
-        }
-    }
-    
-    public EmbeddedActiveMQBroker(int i) {
+    private PooledConnectionFactory pooledConnectionFactory;
+    private JmsTransactionManager transactionManager;
+      
+    public EmbeddedActiveMQBroker2() {
     	this.brokerId = "embeddedBroker";
         tcpConnectorUri = "tcp://localhost:" + AvailablePortFinder.getNextAvailable();
         connectionFactory = new org.apache.activemq.spring.ActiveMQConnectionFactory();
@@ -107,9 +58,9 @@ public class EmbeddedActiveMQBroker extends ExternalResource {
 		connectionFactory.setPrefetchPolicy(prefetchPolicy);
 		connectionFactory.setTrustAllPackages(true);
 		
-		PooledConnectionFactory pooledConnectionFactory =  new PooledConnectionFactory();
+		pooledConnectionFactory =  new PooledConnectionFactory();
         pooledConnectionFactory.setConnectionFactory(connectionFactory);
-        JmsTransactionManager transactionManager = new JmsTransactionManager(pooledConnectionFactory);
+        transactionManager = new JmsTransactionManager(pooledConnectionFactory);
         
         
         JmsConfiguration amqCamelConfig = new JmsConfiguration(pooledConnectionFactory);
@@ -121,23 +72,24 @@ public class EmbeddedActiveMQBroker extends ExternalResource {
         activeMQComponent = new ActiveMQComponent();
         activeMQComponent.setConfiguration(amqCamelConfig);
         
-        
+        JmsTemplate jmsTemplate = new JmsTemplate(pooledConnectionFactory);
+        jmsTemplate.setSessionTransacted(true);
 
-		JmsTemplate jmsTemplate = new JmsTemplate();
-		jmsTemplate.setConnectionFactory(connectionFactory);
-		jmsTemplate.setSessionTransacted(true);
-
+//		JmsTemplate jmsTemplate = new JmsTemplate();
+//		jmsTemplate.setConnectionFactory(connectionFactory);
+//		jmsTemplate.setSessionTransacted(true);
+//
 		dataSource = EmbeddedDataSourceJMSAwareFactory.getDataSource(jmsTemplate);
 		brokerService = new BrokerService();
 		JDBCPersistenceAdapter jdbcPersistenceAdapter = new JDBCPersistenceAdapter();
 		jdbcPersistenceAdapter.setDataSource(dataSource);
 		jdbcPersistenceAdapter.setCreateTablesOnStartup(true);
-
+//
         brokerService.setBrokerId(this.brokerId);
         brokerService.setPersistent(false);
         brokerService.setUseJmx(false);
         try {
-        	brokerService.setPersistenceAdapter(jdbcPersistenceAdapter);
+//        	brokerService.setPersistenceAdapter(jdbcPersistenceAdapter);
         	brokerService.addConnector(tcpConnectorUri);
         } catch (Exception e) {
             throw new RuntimeException("Problem creating brokerService", e);
@@ -164,13 +116,19 @@ public class EmbeddedActiveMQBroker extends ExternalResource {
         return tcpConnectorUri;
     }
     
-    public ActiveMQConnectionFactory getConnectionFactory() {
-    	return connectionFactory;
+    public PooledConnectionFactory getConnectionFactory() {
+    	return pooledConnectionFactory;
     }
     
     public DataSource getDataSource() {
         return dataSource;
     }
     
+    public JmsTransactionManager getTransactionManager() {
+    	return transactionManager;
+    }
     
+    public ActiveMQComponent getComponent() {
+    	return activeMQComponent;
+    }
 }

@@ -10,8 +10,8 @@ create table CAMEL_MESSAGEPROCESSED (
 );
 
 create table audit_log (
-    audit_id serial primary key,
-	  message varchar(255) not null
+    audit_id int primary key,
+	message varchar(255) not null
 );
 
 create table messages (

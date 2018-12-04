@@ -2,9 +2,6 @@ package com.akushwah.camel.sample.test;
 
 import java.sql.SQLException;
 
-import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.activemq.ActiveMQXAConnectionFactory;
-import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
@@ -13,33 +10,26 @@ import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.impl.SimpleRegistry;
 import org.apache.camel.spring.spi.SpringTransactionPolicy;
 import org.apache.camel.test.junit4.CamelTestSupport;
-import org.h2.jdbcx.JdbcDataSource;
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
-import org.springframework.transaction.jta.JtaTransactionManager;
+import org.springframework.jms.connection.JmsTransactionManager;
 
 import com.akushwah.camel.sample.attempts.Attempt2Route;
 import com.akushwah.camel.sample.utils.AuditLogDao;
-import com.akushwah.camel.sample.utils.EmbeddedActiveMQBroker;
-import com.akushwah.camel.sample.utils.EmbeddedDataSourceFactory;
+import com.akushwah.camel.sample.utils.EmbeddedActiveMQBroker2;
 import com.akushwah.camel.sample.utils.EmployeeDao;
 import com.akushwah.camel.sample.utils.ExceptionThrowingProcessor;
 import com.akushwah.camel.sample.utils.H2MemoryDatabaseExample;
 import com.akushwah.camel.sample.utils.ManagerDao;
 import com.akushwah.camel.sample.utils.PersonDao;
-import com.atomikos.icatch.jta.UserTransactionImp;
-import com.atomikos.icatch.jta.UserTransactionManager;
-import com.atomikos.jdbc.AtomikosDataSourceBean;
-import com.atomikos.jms.AtomikosConnectionFactoryBean;
 
-public class Attempt2Test extends CamelTestSupport {
+public class Attempt3Test extends CamelTestSupport {
 	public static final int MAX_WAIT_TIME = 10000;
 
 	@Rule
-	public EmbeddedActiveMQBroker broker = new EmbeddedActiveMQBroker("embeddedBroker");
-	private AtomikosConnectionFactoryBean atomikosConnectionFactoryBean;
-	private UserTransactionManager userTransactionManager;
+	public EmbeddedActiveMQBroker2 broker = new EmbeddedActiveMQBroker2();
+
 	private PersonDao personDao;
 	private EmployeeDao employeeDao;
 	private ManagerDao managerDao;
@@ -51,86 +41,52 @@ public class Attempt2Test extends CamelTestSupport {
 		return new Attempt2Route(personDao, employeeDao, managerDao);
 	}
 
+	/**
+	 * <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+	 * <property name="connectionFactory" ref="connectionFactory" />
+	 * <property name="receiveTimeout" value="100" /> <!-- This is important... -->
+	 * <property name="sessionTransacted" value="true" /> </bean>
+	 * 
+	 * <bean id="connectionFactory" class=
+	 * "org.apache.activemq.ActiveMQConnectionFactory" depends-on="brokerService">
+	 * <property name="brokerURL" value="vm://localhost?async=false" /> </bean>
+	 */
+
 	@Override
 	protected CamelContext createCamelContext() throws Exception {
-		System.out.println("Creating camel context");
 		SimpleRegistry registry = new SimpleRegistry();
 
-		// JMS setup
-		ActiveMQXAConnectionFactory xaConnectionFactory = new ActiveMQXAConnectionFactory();
-		xaConnectionFactory.setBrokerURL(broker.getTcpConnectorUri());
-		registry.put("connectionFactory", xaConnectionFactory);
+		registry.put("connectionFactory", broker.getConnectionFactory());
+		JmsTransactionManager jmsTransactionManager = broker.getTransactionManager();
+		jmsTransactionManager.setConnectionFactory(broker.getConnectionFactory());
+		registry.put("jmsTransactionManager", jmsTransactionManager);
 
-		atomikosConnectionFactoryBean = new AtomikosConnectionFactoryBean();
-		atomikosConnectionFactoryBean.setXaConnectionFactory(xaConnectionFactory);
-		atomikosConnectionFactoryBean.setUniqueResourceName("xa.activemq");
-		atomikosConnectionFactoryBean.setMaxPoolSize(10);
-		atomikosConnectionFactoryBean.setIgnoreSessionTransactedFlag(false);
-		registry.put("atomikos.connectionFactory", atomikosConnectionFactoryBean);
-
-		// JDBC setup
-		JdbcDataSource jdbcDataSource = EmbeddedDataSourceFactory.getJdbcDataSource("schema.sql");
-
-		AtomikosDataSourceBean atomikosDataSourceBean = new AtomikosDataSourceBean();
-		atomikosDataSourceBean.setXaDataSource(jdbcDataSource);
-		atomikosDataSourceBean.setUniqueResourceName("xa.h2");
-		registry.put("atomikos.dataSource", atomikosDataSourceBean);
-
-		// Atomikos setup
-		userTransactionManager = new UserTransactionManager();
-		userTransactionManager.setForceShutdown(false);
-		userTransactionManager.init();
-
-		UserTransactionImp userTransactionImp = new UserTransactionImp();
-		userTransactionImp.setTransactionTimeout(300);
-
-		JtaTransactionManager jtaTransactionManager = new JtaTransactionManager();
-		jtaTransactionManager.setTransactionManager(userTransactionManager);
-		jtaTransactionManager.setUserTransaction(userTransactionImp);
-
-		registry.put("jta.transactionManager", jtaTransactionManager);
-
-		SpringTransactionPolicy propagationRequired = new SpringTransactionPolicy();
-		propagationRequired.setTransactionManager(jtaTransactionManager);
-		propagationRequired.setPropagationBehaviorName("PROPAGATION_REQUIRED");
-		registry.put("PROPAGATION_REQUIRED", propagationRequired);
+		SpringTransactionPolicy policy = new SpringTransactionPolicy();
+		policy.setTransactionManager(jmsTransactionManager);
+		policy.setPropagationBehaviorName("PROPAGATION_REQUIRED");
+		registry.put("PROPAGATION_REQUIRED", policy);
 
 		CamelContext camelContext = new DefaultCamelContext(registry);
 
 		{
 			SqlComponent sqlComponent = new SqlComponent();
-			sqlComponent.setDataSource(atomikosDataSourceBean);
+			sqlComponent.setDataSource(broker.getDataSource());
 			camelContext.addComponent("sql", sqlComponent);
 		}
 		{
 			// transactional JMS component
-			ActiveMQComponent activeMQComponent = new ActiveMQComponent();
-			activeMQComponent.setConnectionFactory(atomikosConnectionFactoryBean);
-			activeMQComponent.setTransactionManager(jtaTransactionManager);
-			camelContext.addComponent("jms", activeMQComponent);
+//			ActiveMQComponent activeMQComponent = new ActiveMQComponent();
+//			activeMQComponent.setConnectionFactory(broker.getConnectionFactory());
+//			activeMQComponent.setTransactionManager(jmsTransactionManager);
+			camelContext.addComponent("jms", broker.getComponent());
 		}
-		{
-			// non-transactional JMS component setup for test purposes
-			ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
-			connectionFactory.setBrokerURL(broker.getTcpConnectorUri());
 
-			ActiveMQComponent activeMQComponent = new ActiveMQComponent();
-			activeMQComponent.setConnectionFactory(connectionFactory);
-			activeMQComponent.setTransactionManager(jtaTransactionManager);
-			camelContext.addComponent("nonTxJms", activeMQComponent);
-		}
-		auditLogDao = new AuditLogDao(jdbcDataSource);
-		personDao = new PersonDao(jdbcDataSource);
-		employeeDao = new EmployeeDao(jdbcDataSource);
-		managerDao = new ManagerDao(jdbcDataSource);
+		personDao = new PersonDao(broker.getDataSource());
+		employeeDao = new EmployeeDao(broker.getDataSource());
+		managerDao = new ManagerDao(broker.getDataSource());
+		auditLogDao = new AuditLogDao(broker.getDataSource());
 		return camelContext;
 	}
-
-//	@After
-//	public void closeAtomikosResources() {
-//		userTransactionManager.close();
-//		atomikosConnectionFactoryBean.close();
-//	}
 
 	// @Test
 	public void testTransactedNoException() throws InterruptedException {
@@ -154,7 +110,7 @@ public class Attempt2Test extends CamelTestSupport {
 		final MockEndpoint mockError = getMockEndpoint("mock:error");
 		mockError.expectedMessageCount(1);
 		mockError.expectedBodiesReceived(message);
-
+		
 		// even though the route throws an exception, we don't have to deal with it here
 		// as we
 		// don't send the message to the route directly, but to the broker, which acts
@@ -183,12 +139,11 @@ public class Attempt2Test extends CamelTestSupport {
 		// String.class));
 		// assertEquals(message, consumer.receiveBody("jms:outbound", MAX_WAIT_TIME,
 		// String.class));
-		
 
 		assertEquals(0, auditLogDao.getAuditCount(message));
 		assertEquals(2, managerDao.getManagerCount());
 	}
-	
+
 	@After
 	public void printRecords() {
 		System.out.println("********************");
