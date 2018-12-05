@@ -15,7 +15,7 @@ public class PrinterSemaphore {
 	public void print(int i) {
 		if (i % 2 == 0) {
 			printEven(i);
-		} else if (i % 2 == 1) {
+		} else {
 			printOdd(i);
 		}
 	}
