@@ -12,7 +12,7 @@ public class FileConsumingRoute extends RouteBuilder {
         	.to("seda:longRunningPhase");
 
         from("seda:longRunningPhase?concurrentConsumers=15").startupOrder(1)
-            .process(new MyProcessor())
+            .process("myp")
             .log("Set message to ${body}")
             .to("{{end.endpoint}}");
     }
