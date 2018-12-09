@@ -1,4 +1,4 @@
-package com.akushwah.examples.threads.oddeven;
+package com.akushwah.examples.threads.semaphor;
 
 public class EvenPrinterSemaphore implements Runnable {
 
