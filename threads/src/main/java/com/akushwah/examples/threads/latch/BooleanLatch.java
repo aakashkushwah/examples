@@ -5,6 +5,8 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 public class BooleanLatch {
 
 	private static class Sync extends AbstractQueuedSynchronizer {
+		private static final long serialVersionUID = -2745962392988495029L;
+
 		boolean isSignalled() {
 			return getState() != 0;
 		}
