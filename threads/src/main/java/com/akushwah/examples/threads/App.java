@@ -1,5 +1,9 @@
 package com.akushwah.examples.threads;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * Hello world!
  *
@@ -25,5 +29,10 @@ public class App {
 			Task task = new Task(i);
 			pool.execute(task);
 		}
+		
+		ExecutorService executor = Executors.newCachedThreadPool();
+		executor.execute(new Task(11));
+		executor.shutdown();
+		
 	}
 }

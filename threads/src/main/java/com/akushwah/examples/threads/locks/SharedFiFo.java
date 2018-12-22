@@ -31,10 +31,12 @@ public class SharedFiFo<T> {
 		lock.unlock();
 	}
 
-	public T take() {
+	public T take() throws InterruptedException {
 		Object elem = null;
 		lock.lock();
-
+		if (current <= 0) {
+			isEmpty.await();
+		}
 		elem = eles[removeIndex];
 		removeIndex = (removeIndex + 1) % eles.length;
 		--current;

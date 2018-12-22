@@ -11,4 +11,9 @@ public class Task implements Runnable {
     public void run() {
         System.out.println("Task " + num + " is running.");
     }
+    
+    @Override
+    public String toString() {
+    	return "Task "+num;
+    }
 }

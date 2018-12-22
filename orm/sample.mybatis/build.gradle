@@ -15,8 +15,15 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'eclipse'
 mainClassName = 'sample.mybatis.Main'
-
+configurations {
+    jaxb
+}
 dependencies {
+	//JAXB model generation
+    jaxb 'javax.xml.bind:jaxb-api:2.2.11'
+    jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.11'
+    jaxb 'com.sun.xml.bind:jaxb-impl:2.2.11'
+    jaxb 'com.sun.xml.bind:jaxb-osgi:2.2.11'
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     // api 'org.apache.commons:commons-math3:3.6.1'
 
@@ -45,3 +52,57 @@ jar {
         attributes 'Main-Class': 'sample.mybatis.Main'
     }
 }
+
+ext {
+    jaxbTargetDir = file("build/generated/main/jaxb")
+}
+
+//generate JAXB classes from XSD's
+task generateJAXBclasses() {
+    doLast {
+        if (!jaxbTargetDir.exists()) {
+            jaxbTargetDir.mkdirs()
+        }
+
+        ant.taskdef(name: 'xjc', classname: 'com.sun.tools.xjc.XJCTask', classpath: configurations.jaxb.asPath)
+        ant.jaxbTargetDir = "build/generated/main/jaxb"
+
+        def xsdDir = "src/main/resources/xsd"
+
+        ant.xjc(
+                destdir: "build/generated/main/jaxb",
+                package: "com.cft.pts.payment.processing.integration.iso20022.model.wire.sepainst",
+                binding: "src/main/resources/xsd/pain.xjb",
+                schema: "src/main/resources/xsd/pain.xsd",
+                removeOldOutput: 'yes',
+                extension: 'true'
+        )
+                {
+                    arg(line: "-npa")
+                }
+        ant.xjc(
+                destdir: "build/generated/main/jaxb",
+                package: "com.cft.pts.payment.processing.integration.iso20022.model.wire.pain00100108",
+                binding: "src/main/resources/xsd/pain.001.001.08.wire.xjb",
+                schema: "src/main/resources/xsd/pain.001.001.08.wire.xsd",
+                removeOldOutput: 'yes',
+                extension: 'true'
+        )
+                {
+                    arg(line: "-npa")
+                }
+        ant.xjc(
+                destdir: "build/generated/main/jaxb",
+                package: "com.cft.ak",
+                binding: "src/main/resources/xsd/akschema.xjb",
+                schema: "src/main/resources/xsd/akschema.xsd",
+                removeOldOutput: 'yes',
+                extension: 'true'
+        )
+                {
+                    arg(line: "-npa")
+                }
+    }
+}
+
+compileJava.dependsOn generateJAXBclasses

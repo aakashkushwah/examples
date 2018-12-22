@@ -1,18 +1,18 @@
 package com.akushwah.examples.threads;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
+import com.akushwah.examples.threads.locks.SharedFiFo;
 
 public class ThreadPool {
 
 	private final int numOfThreads;
-	private final BlockingQueue<Runnable> queue;
+//	private final BlockingQueue<Runnable> queue;
+	private final SharedFiFo<Runnable> queue;
 	private final PoolWorker[] threads;
 
 	public ThreadPool(int n) {
 		this.numOfThreads = n;
 //		queue = new LinkedBlockingQueue<>();
-		queue = new ArrayBlockingQueue<>(1);
+		queue = new SharedFiFo<>(3);
 		threads = new PoolWorker[numOfThreads];
 		for (int i = 0; i < numOfThreads; i++) {
 			threads[i] = new PoolWorker("Thread " + i);
@@ -31,6 +31,10 @@ public class ThreadPool {
 		}
 		// queue.notify();
 		// }
+	}
+	
+	public void shutdown() {
+		
 	}
 
 	private class PoolWorker implements Runnable {
@@ -55,10 +59,9 @@ public class ThreadPool {
 
 				// }
 				try {
-					System.out.println("Taking from queue");
 					r = queue.take();
-					System.out.println("Running from " + name);
-					Thread.sleep(1000);
+					System.out.println("Running from " + name+" and job is "+r);
+					Thread.sleep(2000);
 					r.run();
 				} catch (RuntimeException e) {
 					System.out.println("Thread pool is interrupted due to an issue: " + e.getMessage());
