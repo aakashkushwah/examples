@@ -1,28 +1,14 @@
 package com.akushwah.examples.threads.onetwothree;
 
-import com.akushwah.examples.threads.onetwothree.App.SEQ;
-
 public class Worker implements Runnable {
 	private int value;
 	private final Printer p;
-	private SEQ seq;
+	private final int initialVal;
 
 	public Worker(int initialVal, Printer p) {
+		this.initialVal = initialVal;
 		this.value = initialVal;
 		this.p = p;
-		switch (initialVal) {
-		case 1:
-			seq = SEQ.N1;
-			break;
-		case 2:
-			seq = SEQ.N2;
-			break;
-		case 3:
-			seq = SEQ.N3;
-			break;
-		default:
-			break;
-		}
 	}
 
 	@Override
@@ -32,8 +18,8 @@ public class Worker implements Runnable {
 			while (true) {
 				if (value > App.MAX)
 					break;
-				switch (seq) {
-				case N1:
+				switch (initialVal) {
+				case 1:
 					while (!p.isThreeNPrinted()) {
 						try {
 							p.wait();
@@ -45,7 +31,7 @@ public class Worker implements Runnable {
 					p.setTwoNPrinted(false);
 					p.setThreeNPrinted(false);
 					break;
-				case N2:
+				case 2:
 					while (!p.isOneNPrinted()) {
 						try {
 							p.wait();
@@ -57,7 +43,7 @@ public class Worker implements Runnable {
 					p.setTwoNPrinted(true);
 					p.setThreeNPrinted(false);
 					break;
-				case N3:
+				case 3:
 					while (!p.isTwoNPrinted()) {
 						try {
 							p.wait();
@@ -74,7 +60,7 @@ public class Worker implements Runnable {
 					break;
 				}
 
-				p.print(value, seq);
+				p.print(value, initialVal);
 				value += 3;
 				p.notifyAll();
 			}

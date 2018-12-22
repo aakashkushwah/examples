@@ -1,7 +1,6 @@
 package com.akushwah.examples.threads.onetwothree;
 
 public class App {
-	public enum SEQ {N1, N2, N3};
 	public static final int MAX=20;
 	
 	public static void main(String[] args) {
