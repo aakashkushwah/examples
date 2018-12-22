@@ -37,9 +37,6 @@ public class Worker implements Runnable {
 					while (!p.isThreeNPrinted()) {
 						try {
 							p.wait();
-							while(p.isOneNPrinted()) {
-								p.wait();
-							}
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
@@ -52,9 +49,6 @@ public class Worker implements Runnable {
 					while (!p.isOneNPrinted()) {
 						try {
 							p.wait();
-							while(p.isTwoNPrinted()) {
-								p.wait();
-							}
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
@@ -67,9 +61,6 @@ public class Worker implements Runnable {
 					while (!p.isTwoNPrinted()) {
 						try {
 							p.wait();
-							while(p.isThreeNPrinted()) {
-								p.wait();
-							}
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
