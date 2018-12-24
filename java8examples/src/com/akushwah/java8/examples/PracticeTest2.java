@@ -1,8 +1,12 @@
 package com.akushwah.java8.examples;
 
 import java.util.LinkedList;
+import java.util.TreeSet;
 
 public class PracticeTest2 {
+	
+	public enum CHECK{SIREN, POLICE, CHARGE};
+	
 	public static void main(String[] args) {
 //		C1 c1 = new C1();
 //
@@ -20,6 +24,11 @@ public class PracticeTest2 {
 		l2.add(6);
 		printLinkedList(l2);
 		printLinkedList(add(l1, l2));
+		
+		TreeSet<CHECK> set = new TreeSet<>();
+		set.add(CHECK.CHARGE);
+		set.add(CHECK.POLICE);
+		System.out.println(set);
 		
 	}
 	
