@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+      
+      <mapping map-id="k">
+		<class-a>com.ddlab.dozer.type2.srcpkg.Address</class-a>
+		<class-b>com.ddlab.dozer.type2.destnpkg.AddressBean</class-b>
+		<field>
+			<a>name</a>
+			<b>name</b>
+		</field>
+		<field >
+			<a>id</a>
+			<b>id</b>
+		</field>
+	</mapping>
+	
+	<mapping map-id="q1" type="one-way" relationship-type="non-cumulative">
+		<class-a>com.ddlab.dozer.type2.srcpkg.AddressList</class-a>
+		<class-b>com.ddlab.dozer.type2.destnpkg.AddressBeanList</class-b>
+		
+		<field map-id="k">
+			<a>adrsList</a>
+			<b>adrsList</b>
+		</field>
+	</mapping>
+      
+</mappings>
