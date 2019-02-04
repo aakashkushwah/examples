@@ -1,7 +1,33 @@
 {
    "CstmrCdtTrfInitn" : {
+      "GrpHdr" : {
+         "MsgId" : "0000001234560300419",
+         "CreDtTm" : "2019-02-04T15:12:16.872",
+         "NbOfTxs" : "1",
+         "InitgPty" : {
+            "Nm" : "PENTAGON FEDERAL CREDIT UNION"
+         }
+      },
       "PmtInf" : {
-         "InstrForDbtrAgt" : "Instruction"
-      }
+         "PmtInfId" : "000000123456789213",
+         "PmtMtd" : "TRF",
+         "PmtTpInf" : {
+            "LclInstrm" : {
+               "Cd" : "DRC"
+            }
+         },
+         "ReqdExctnDt" : {
+            "Dt" : "2019-02-04"
+         }
+      },
+      "SplmtryData" : [ {
+         "Envlp" : {
+            "AddtlInf" : {
+               "BizInf" : {
+                  "ChanlCd" : "INB"
+               }
+            }
+         }
+      } ]
    }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+	
+	<configuration>
+		<custom-converters>
+			<converter type="com.pain.converters.converters.EnumConverter1">
+				<class-a>java.lang.String</class-a>
+				<class-b>com.sample.pain.PaymentMethod3CodeWire</class-b>
+			</converter>
+		</custom-converters>
+	</configuration>
+	
+	<mapping map-id="a">
+		<class-a>com.sample.pain.Document</class-a>
+		<class-b>com.example.Document</class-b>
+		<field>
+			<a>cstmrCdtTrfInitn.pmtInf.InstrForDbtrAgt</a>
+			<b>cstmrCdtTrfInitn.pmtInf.InstrForDbtrAgt</b>
+		</field>
+	</mapping>
+	
+	<mapping map-id="a1">
+		<class-a>com.example.Document</class-a>
+		<class-b>com.sample.pain.Document</class-b>
+		<field>
+			<a>cstmrCdtTrfInitn.pmtInf.InstrForDbtrAgt</a>
+			<b>cstmrCdtTrfInitn.pmtInf.InstrForDbtrAgt</b>
+		</field>
+		<field>
+			<a>cstmrCdtTrfInitn.pmtInf.pmtMtd</a>
+			<b>cstmrCdtTrfInitn.pmtInf.pmtMtd</b>
+		</field>
+	</mapping>
+</mappings>

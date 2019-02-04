@@ -10,12 +10,64 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+    "PmtInfId",
+    "PmtMtd",
+    "PmtTpInf",
+    "ReqdExctnDt",
     "InstrForDbtrAgt"
 })
 public class PmtInf {
 
+    @JsonProperty("PmtInfId")
+    private String pmtInfId;
+    @JsonProperty("PmtMtd")
+    private String pmtMtd;
+    @JsonProperty("PmtTpInf")
+    private PmtTpInf pmtTpInf;
+    @JsonProperty("ReqdExctnDt")
+    private ReqdExctnDt reqdExctnDt;
     @JsonProperty("InstrForDbtrAgt")
     private String instrForDbtrAgt;
+
+    @JsonProperty("PmtInfId")
+    public String getPmtInfId() {
+        return pmtInfId;
+    }
+
+    @JsonProperty("PmtInfId")
+    public void setPmtInfId(String pmtInfId) {
+        this.pmtInfId = pmtInfId;
+    }
+
+    @JsonProperty("PmtMtd")
+    public String getPmtMtd() {
+        return pmtMtd;
+    }
+
+    @JsonProperty("PmtMtd")
+    public void setPmtMtd(String pmtMtd) {
+        this.pmtMtd = pmtMtd;
+    }
+
+    @JsonProperty("PmtTpInf")
+    public PmtTpInf getPmtTpInf() {
+        return pmtTpInf;
+    }
+
+    @JsonProperty("PmtTpInf")
+    public void setPmtTpInf(PmtTpInf pmtTpInf) {
+        this.pmtTpInf = pmtTpInf;
+    }
+
+    @JsonProperty("ReqdExctnDt")
+    public ReqdExctnDt getReqdExctnDt() {
+        return reqdExctnDt;
+    }
+
+    @JsonProperty("ReqdExctnDt")
+    public void setReqdExctnDt(ReqdExctnDt reqdExctnDt) {
+        this.reqdExctnDt = reqdExctnDt;
+    }
 
     @JsonProperty("InstrForDbtrAgt")
     public String getInstrForDbtrAgt() {
@@ -29,12 +81,12 @@ public class PmtInf {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("instrForDbtrAgt", instrForDbtrAgt).toString();
+        return new ToStringBuilder(this).append("pmtInfId", pmtInfId).append("pmtMtd", pmtMtd).append("pmtTpInf", pmtTpInf).append("reqdExctnDt", reqdExctnDt).append("instrForDbtrAgt", instrForDbtrAgt).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(instrForDbtrAgt).toHashCode();
+        return new HashCodeBuilder().append(pmtInfId).append(reqdExctnDt).append(instrForDbtrAgt).append(pmtTpInf).append(pmtMtd).toHashCode();
     }
 
     @Override
@@ -46,7 +98,7 @@ public class PmtInf {
             return false;
         }
         PmtInf rhs = ((PmtInf) other);
-        return new EqualsBuilder().append(instrForDbtrAgt, rhs.instrForDbtrAgt).isEquals();
+        return new EqualsBuilder().append(pmtInfId, rhs.pmtInfId).append(reqdExctnDt, rhs.reqdExctnDt).append(instrForDbtrAgt, rhs.instrForDbtrAgt).append(pmtTpInf, rhs.pmtTpInf).append(pmtMtd, rhs.pmtMtd).isEquals();
     }
 
 }
