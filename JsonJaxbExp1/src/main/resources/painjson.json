@@ -1,0 +1,191 @@
+{
+  "cstmrCdtTrfInitn": {
+    "grpHdr": {
+      "msgId": "0000001234560300419",
+      "creDtTm": 1529908200000,
+      "authstn": [],
+      "nbOfTxs": "1",
+      "ctrlSum": null,
+      "initgPty": {
+        "nm": "PENTAGON FEDERAL CREDIT UNION",
+        "pstlAdr": null,
+        "id": null,
+        "ctryOfRes": null,
+        "ctctDtls": null
+      },
+      "fwdgAgt": null
+    },
+    "pmtInf": {
+      "pmtInfId": "000000123456789213",
+      "pmtMtd": "TRF",
+      "btchBookg": null,
+      "nbOfTxs": null,
+      "ctrlSum": null,
+      "pmtTpInf": {
+        "instrPrty": null,
+        "svcLvl": null,
+        "lclInstrm": {
+          "cd": "DRC"
+        },
+        "ctgyPurp": null
+      },
+      "reqdExctnDt": {
+        "dt": 1548268200000
+      },
+      "poolgAdjstmntDt": null,
+      "dbtr": {
+        "nm": "Bank of America",
+        "pstlAdr": {
+          "adrTp": null,
+          "dept": null,
+          "subDept": null,
+          "strtNm": null,
+          "bldgNb": null,
+          "pstCd": null,
+          "twnNm": null,
+          "ctrySubDvsn": null,
+          "ctry": null,
+          "adrLine": [
+            "115 W 42nd St, New York, NY 10036,",
+            " US"
+          ]
+        },
+        "id": null,
+        "ctryOfRes": null,
+        "ctctDtls": null
+      },
+      "dbtrAcct": {
+        "id": {
+          "iban": null,
+          "othr": {
+            "id": "987659003",
+            "schmeNm": null,
+            "issr": null
+          }
+        },
+        "tp": null,
+        "ccy": null,
+        "nm": null
+      },
+      "dbtrAgt": {
+        "finInstnId": {
+          "bicfi": null,
+          "clrSysMmbId": {
+            "clrSysId": null,
+            "mmbId": "026009593"
+          },
+          "nm": "Unicredit",
+          "pstlAdr": {
+            "adrTp": null,
+            "dept": null,
+            "subDept": null,
+            "strtNm": null,
+            "bldgNb": null,
+            "pstCd": null,
+            "twnNm": null,
+            "ctrySubDvsn": null,
+            "ctry": null,
+            "adrLine": [
+              "115 W 42nd St, Rome, IT 10036,",
+              " IT"
+            ]
+          },
+          "othr": null
+        },
+        "brnchId": null
+      },
+      "dbtrAgtAcct": null,
+      "instrForDbtrAgt": "Reverse Instrument",
+      "ultmtDbtr": null,
+      "chrgBr": null,
+      "chrgsAcct": null,
+      "chrgsAcctAgt": null,
+      "cdtTrfTxInf": {
+        "pmtId": {
+          "instrId": null,
+          "endToEndId": "000000123456789333"
+        },
+        "pmtTpInf": null,
+        "amt": {
+          "instdAmt": {
+            "value": 12502,
+            "ccy": "USD"
+          },
+          "eqvtAmt": null
+        },
+        "xchgRateInf": null,
+        "chrgBr": null,
+        "chqInstr": null,
+        "ultmtDbtr": null,
+        "intrmyAgt1": null,
+        "intrmyAgt1Acct": null,
+        "intrmyAgt2": null,
+        "intrmyAgt2Acct": null,
+        "intrmyAgt3": null,
+        "intrmyAgt3Acct": null,
+        "cdtrAgt": {
+          "finInstnId": {
+            "bicfi": null,
+            "clrSysMmbId": {
+              "clrSysId": null,
+              "mmbId": "256078446"
+            },
+            "nm": "PENTAGON FEDERAL CREDIT UNION",
+            "pstlAdr": {
+              "adrTp": null,
+              "dept": null,
+              "subDept": null,
+              "strtNm": null,
+              "bldgNb": null,
+              "pstCd": null,
+              "twnNm": null,
+              "ctrySubDvsn": null,
+              "ctry": null,
+              "adrLine": [
+                "P.O. BOX 1432 ALEXANDRIA Virginia, ",
+                "22313"
+              ]
+            },
+            "othr": null
+          },
+          "brnchId": null
+        },
+        "cdtrAgtAcct": null,
+        "cdtr": null,
+        "cdtrAcct": null,
+        "ultmtCdtr": null,
+        "instrForCdtrAgt": {
+          "cd": null,
+          "instrInf": "Beneficiary information 001"
+        },
+        "instrForDbtrAgt": null,
+        "purp": null,
+        "rgltryRptg": [],
+        "tax": null,
+        "rltdRmtInf": null,
+        "rmtInf": null,
+        "splmtryData": []
+      }
+    },
+    "splmtryData": [
+      {
+        "plcAndNm": null,
+        "envlp": {
+          "addtlInf": {
+            "clntAddtn": null,
+            "bizInf": {
+              "chanlCd": "INB",
+              "acctClsr": null,
+              "rgltryOvrrd": null,
+              "chrgsWvd": null,
+              "chrgsApldAmt": null,
+              "txTpCd": null,
+              "rcvrFIInf": null,
+              "xchgRateDealId": null
+            }
+          }
+        }
+      }
+    ]
+  }
+}
