@@ -40,6 +40,11 @@ public class TestPainBeanMapping {
 		mapper.map(p, p1, "a");
 		// Check the destination bean
 		System.out.println("Age : " + p1.getCstmrCdtTrfInitn().getPmtInf().getInstrForDbtrAgt());
+		
+		p1.getCstmrCdtTrfInitn().getPmtInf().setInstrForDbtrAgt("Instruction reversed");
+		
+		mapper.map(p1, p, "a1");
+		System.out.println("Age : " + p.getCstmrCdtTrfInitn().getPmtInf().getInstrForDbtrAgt());
 
 	}
 

@@ -10,4 +10,13 @@
 			<b>cstmrCdtTrfInitn.pmtInf.InstrForDbtrAgt</b>
 		</field>
 	</mapping>
+	
+	<mapping map-id="a1">
+		<class-a>com.example.Document</class-a>
+		<class-b>com.sample.pain.Document</class-b>
+		<field>
+			<a>cstmrCdtTrfInitn.pmtInf.InstrForDbtrAgt</a>
+			<b>cstmrCdtTrfInitn.pmtInf.InstrForDbtrAgt</b>
+		</field>
+	</mapping>
 </mappings>
