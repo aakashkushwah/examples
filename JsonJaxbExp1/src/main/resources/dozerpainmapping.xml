@@ -3,23 +3,11 @@
 	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
 	
 	<mapping map-id="a">
-		<class-a>com.sample.pain</class-a>
-		<class-b>com.ddlab.rnd.type1.destnpkg.Person1</class-b>
+		<class-a>com.sample.pain.Document</class-a>
+		<class-b>com.example.Document</class-b>
 		<field>
-			<a>name</a>
-			<b>name1</b>
-		</field>
-		<field>
-			<a>age</a>
-			<b>age1</b>
-		</field>
-		<field>
-			<a>adrs.doorNo</a>
-			<b>adrs1.doorNo1</b>
-		</field>
-		<field>
-			<a>adrs.stName</a>
-			<b>adrs1.stName1</b>
+			<a>cstmrCdtTrfInitn.pmtInf.InstrForDbtrAgt</a>
+			<b>cstmrCdtTrfInitn.pmtInf.InstrForDbtrAgt</b>
 		</field>
 	</mapping>
 </mappings>
