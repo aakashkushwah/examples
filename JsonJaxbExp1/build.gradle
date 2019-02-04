@@ -58,9 +58,7 @@ dependencies {
     
     /*SPRING BOOT*/
     compile group: 'org.springframework.boot', name: 'spring-boot-dependencies', version: '1.5.2.RELEASE', ext: 'pom'
-    compile (group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.2.RELEASE') {
-		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
-	}
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.2.RELEASE'
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.5.2.RELEASE'
 	
 	compile group: 'org.eclipse.persistence', name: 'org.eclipse.persistence.moxy', version: '2.5.2'
