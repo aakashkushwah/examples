@@ -1,13 +1,13 @@
 {
   "cstmrCdtTrfInitn": {
     "grpHdr": {
-      "msgId": "0000001234560300419",
-      "creDtTm": 1529908200000,
-      "authstn": [],
+      "msgId": "DRCJKTESTNM3",
+      "creDtTm": 1547101800000,
+      "authstns": [],
       "nbOfTxs": "1",
       "ctrlSum": null,
       "initgPty": {
-        "nm": "PENTAGON FEDERAL CREDIT UNION",
+        "nm": "Trevor P Wilsony",
         "pstlAdr": null,
         "id": null,
         "ctryOfRes": null,
@@ -16,25 +16,28 @@
       "fwdgAgt": null
     },
     "pmtInf": {
-      "pmtInfId": "000000123456789213",
+      "pmtInfId": "000000123456789224",
       "pmtMtd": "TRF",
       "btchBookg": null,
       "nbOfTxs": null,
       "ctrlSum": null,
       "pmtTpInf": {
         "instrPrty": null,
-        "svcLvl": null,
+        "svcLvl": {
+          "prtry": "1",
+          "cd": null
+        },
         "lclInstrm": {
           "cd": "DRC"
         },
         "ctgyPurp": null
       },
       "reqdExctnDt": {
-        "dt": 1548268200000
+        "dt": 1547145000000
       },
       "poolgAdjstmntDt": null,
       "dbtr": {
-        "nm": "Bank of America",
+        "nm": "Kit Harington",
         "pstlAdr": {
           "adrTp": null,
           "dept": null,
@@ -45,23 +48,44 @@
           "twnNm": null,
           "ctrySubDvsn": null,
           "ctry": null,
-          "adrLine": [
-            "115 W 42nd St, New York, NY 10036,",
-            " US"
+          "adrLines": [
+            "4517 Windmill Way",
+            "Atlanta GA 30301"
           ]
         },
-        "id": null,
+        "id": {
+          "prvtId": {
+            "dtAndPlcOfBirth": {
+              "birthDt": 1005762600000,
+              "prvcOfBirth": "Province of Birth",
+              "cityOfBirth": "City of Birth",
+              "ctryOfBirth": "US"
+            },
+            "othrs": [
+              {
+                "id": "Other Id",
+                "schmeNm": null,
+                "issr": "Other Issuer"
+              }
+            ]
+          },
+          "orgId": null
+        },
         "ctryOfRes": null,
-        "ctctDtls": null
+        "ctctDtls": {
+          "nmPrfx": "DOCT",
+          "nm": "John Smith",
+          "phneNb": "+375-777777777",
+          "mobNb": "+134-1234567",
+          "faxNb": "+134-1234567",
+          "emailAdr": "test@domain.com",
+          "othr": "Other Contact Details"
+        }
       },
       "dbtrAcct": {
         "id": {
-          "iban": null,
-          "othr": {
-            "id": "987659003",
-            "schmeNm": null,
-            "issr": null
-          }
+          "othr": null,
+          "iban": "AB22305984"
         },
         "tp": null,
         "ccy": null,
@@ -72,9 +96,9 @@
           "bicfi": null,
           "clrSysMmbId": {
             "clrSysId": null,
-            "mmbId": "026009593"
+            "mmbId": "325084426"
           },
-          "nm": "Unicredit",
+          "nm": "Bank of America",
           "pstlAdr": {
             "adrTp": null,
             "dept": null,
@@ -85,9 +109,9 @@
             "twnNm": null,
             "ctrySubDvsn": null,
             "ctry": null,
-            "adrLine": [
-              "115 W 42nd St, Rome, IT 10036,",
-              " IT"
+            "adrLines": [
+              "P.O. BOX 115 W 42nd St",
+              "New York, NY 10036"
             ]
           },
           "othr": null
@@ -95,42 +119,57 @@
         "brnchId": null
       },
       "dbtrAgtAcct": null,
-      "instrForDbtrAgt": "Reverse Instrument",
+      "instrForDbtrAgt": null,
       "ultmtDbtr": null,
       "chrgBr": null,
       "chrgsAcct": null,
       "chrgsAcctAgt": null,
       "cdtTrfTxInf": {
         "pmtId": {
-          "instrId": null,
-          "endToEndId": "000000123456789333"
+          "instrId": "SENREF0009876543",
+          "endToEndId": "ENDTOENDID123456Extra12345678"
         },
         "pmtTpInf": null,
         "amt": {
-          "instdAmt": {
-            "value": 12502,
-            "ccy": "USD"
+          "eqvtAmt": {
+            "amt": {
+              "value": 1001.25,
+              "ccy": "EUR"
+            },
+            "ccyOfTrf": "USD"
           },
-          "eqvtAmt": null
+          "instdAmt": null
         },
-        "xchgRateInf": null,
-        "chrgBr": null,
-        "chqInstr": null,
+        "xchgRateInf": {
+          "unitCcy": "USD",
+          "xchgRate": 12.25,
+          "rateTp": null,
+          "ctrctId": null
+        },
+        "chrgBr": "CRED",
+        "chqInstr": {
+          "chqTp": null,
+          "chqNb": "CHEQBNUMBER67897647896565437335CHAR",
+          "chqFr": null,
+          "dlvryMtd": null,
+          "dlvrTo": null,
+          "instrPrty": null,
+          "chqMtrtyDt": null,
+          "frmsCd": null,
+          "memoFlds": [],
+          "rgnlClrZone": null,
+          "prtLctn": null,
+          "sgntrs": []
+        },
         "ultmtDbtr": null,
-        "intrmyAgt1": null,
-        "intrmyAgt1Acct": null,
-        "intrmyAgt2": null,
-        "intrmyAgt2Acct": null,
-        "intrmyAgt3": null,
-        "intrmyAgt3Acct": null,
-        "cdtrAgt": {
+        "intrmyAgt1": {
           "finInstnId": {
-            "bicfi": null,
+            "bicfi": "BOFAUS3NXXX",
             "clrSysMmbId": {
               "clrSysId": null,
-              "mmbId": "256078446"
+              "mmbId": "325084426"
             },
-            "nm": "PENTAGON FEDERAL CREDIT UNION",
+            "nm": "Interm Agent Fininst Name",
             "pstlAdr": {
               "adrTp": null,
               "dept": null,
@@ -141,9 +180,39 @@
               "twnNm": null,
               "ctrySubDvsn": null,
               "ctry": null,
-              "adrLine": [
-                "P.O. BOX 1432 ALEXANDRIA Virginia, ",
-                "22313"
+              "adrLines": [
+                "Interm Agent Fininst Address line 1",
+                "Interm Agent Fininst Address line 2",
+                "Interm Agent Fininst Address line 3"
+              ]
+            },
+            "othr": null
+          },
+          "brnchId": null
+        },
+        "intrmyAgt1Acct": null,
+        "intrmyAgt2": null,
+        "intrmyAgt2Acct": null,
+        "intrmyAgt3": null,
+        "intrmyAgt3Acct": null,
+        "cdtrAgt": {
+          "finInstnId": {
+            "bicfi": "TESTUSABA01",
+            "clrSysMmbId": null,
+            "nm": "Pentagon Federal CU",
+            "pstlAdr": {
+              "adrTp": null,
+              "dept": null,
+              "subDept": null,
+              "strtNm": null,
+              "bldgNb": null,
+              "pstCd": null,
+              "twnNm": null,
+              "ctrySubDvsn": null,
+              "ctry": null,
+              "adrLines": [
+                "P.O. BOX 2930 Eisenhower Ave",
+                "Alexandria, VA 22314"
               ]
             },
             "othr": null
@@ -151,23 +220,259 @@
           "brnchId": null
         },
         "cdtrAgtAcct": null,
-        "cdtr": null,
-        "cdtrAcct": null,
+        "cdtr": {
+          "nm": "Trevor P Wilsony",
+          "pstlAdr": {
+            "adrTp": null,
+            "dept": null,
+            "subDept": null,
+            "strtNm": null,
+            "bldgNb": null,
+            "pstCd": null,
+            "twnNm": null,
+            "ctrySubDvsn": null,
+            "ctry": null,
+            "adrLines": [
+              "440 Dolphin Dr Apt 208",
+              "Seattle WA 98111",
+              "Address Line 3"
+            ]
+          },
+          "id": null,
+          "ctryOfRes": null,
+          "ctctDtls": null
+        },
+        "cdtrAcct": {
+          "id": {
+            "othr": {
+              "id": "679002",
+              "schmeNm": null,
+              "issr": null
+            },
+            "iban": null
+          },
+          "tp": null,
+          "ccy": null,
+          "nm": null
+        },
         "ultmtCdtr": null,
         "instrForCdtrAgt": {
-          "cd": null,
-          "instrInf": "Beneficiary information 001"
+          "cd": "CHQB",
+          "instrInf": "This is for test length limit of 35This is for test length limit of 70This is for test length limit of105This is for test length limit of140"
         },
-        "instrForDbtrAgt": null,
-        "purp": null,
-        "rgltryRptg": [],
+        "instrForDbtrAgt": "The fundamental test process in Software Testing contains five phases - Test Planning, Test Specification, Test Execution, Recording test140",
+        "purp": {
+          "prtry": "Purp",
+          "cd": null
+        },
+        "rgltryRptgs": [],
         "tax": null,
-        "rltdRmtInf": null,
-        "rmtInf": null,
-        "splmtryData": []
+        "rltdRmtInf": {
+          "rmtId": "RmtId",
+          "rmtLctnDtls": [
+            {
+              "mtd": "POST",
+              "elctrncAdr": "test@domain.com",
+              "pstlAdr": {
+                "nm": "Remittance Name",
+                "adr": {
+                  "adrTp": "HOME",
+                  "dept": "Department 1",
+                  "subDept": "Sub-Department 2",
+                  "strtNm": "Steet Name",
+                  "bldgNb": "12",
+                  "pstCd": "22023",
+                  "twnNm": "Big City",
+                  "ctrySubDvsn": "NY",
+                  "ctry": "US",
+                  "adrLines": [
+                    "Remittance Address line 1",
+                    "Remittance Address line 2",
+                    "Remittance Address line 3"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "rmtInf": {
+          "ustrds": [],
+          "strds": [
+            {
+              "rfrdDocInves": [
+                {
+                  "tp": {
+                    "cdOrPrtry": {
+                      "prtry": null,
+                      "cd": "TSUT"
+                    },
+                    "issr": "Ref Doc Inf Issuer 1"
+                  },
+                  "nb": "Ref Doc Inf Name 1",
+                  "rltdDt": 1255458600000,
+                  "lineDtls": []
+                },
+                {
+                  "tp": {
+                    "cdOrPrtry": {
+                      "prtry": null,
+                      "cd": "MSIN"
+                    },
+                    "issr": "Ref Doc Inf Issuer 2"
+                  },
+                  "nb": "Ref Doc Inf Name 2",
+                  "rltdDt": 1255458600000,
+                  "lineDtls": []
+                }
+              ],
+              "rfrdDocAmt": {
+                "duePyblAmt": {
+                  "value": 1001,
+                  "ccy": "USD"
+                },
+                "dscntApldAmts": [
+                  {
+                    "tp": null,
+                    "amt": {
+                      "value": 1002,
+                      "ccy": "USD"
+                    }
+                  }
+                ],
+                "cdtNoteAmt": null,
+                "taxAmts": [],
+                "adjstmntAmtAndRsns": [
+                  {
+                    "amt": {
+                      "value": 1003,
+                      "ccy": "USD"
+                    },
+                    "cdtDbtInd": "DBIT",
+                    "rsn": "81",
+                    "addtlInf": "AddtlInf"
+                  }
+                ],
+                "rmtdAmt": {
+                  "value": 1004,
+                  "ccy": "USD"
+                }
+              },
+              "cdtrRefInf": {
+                "tp": {
+                  "cdOrPrtry": {
+                    "prtry": "CdtrRefInf CdOrPrtry Prtry",
+                    "cd": null
+                  },
+                  "issr": "CdtrRefInf Issuer"
+                },
+                "ref": "CdtrRefInf Ref"
+              },
+              "invcr": {
+                "nm": "Invoicer Name",
+                "pstlAdr": {
+                  "adrTp": "HOME",
+                  "dept": "Invoicer Department",
+                  "subDept": "Invoicer Sub-Department",
+                  "strtNm": "Invoicer Street Name",
+                  "bldgNb": "12",
+                  "pstCd": "21210",
+                  "twnNm": "Small City",
+                  "ctrySubDvsn": "MI",
+                  "ctry": "US",
+                  "adrLines": [
+                    "Invoicer Address Line 1",
+                    "Invoicer Address Line 2",
+                    "Invoicer Address Line 3",
+                    "Invoicer Address Line 4"
+                  ]
+                },
+                "id": {
+                  "prvtId": null,
+                  "orgId": {
+                    "anyBIC": null,
+                    "othrs": [
+                      {
+                        "id": "Invoicer Othr Id",
+                        "schmeNm": {
+                          "prtry": null,
+                          "cd": "DUNS"
+                        },
+                        "issr": "Invocer OrgId Issuer"
+                      }
+                    ]
+                  }
+                },
+                "ctryOfRes": "US",
+                "ctctDtls": {
+                  "nmPrfx": "MADM",
+                  "nm": "Invoicer Contact Name",
+                  "phneNb": "+132-12345",
+                  "mobNb": "+132-12345",
+                  "faxNb": "+132-12345",
+                  "emailAdr": "string",
+                  "othr": "Invoicer Contact Other"
+                }
+              },
+              "invcee": {
+                "nm": "Invoicee Name",
+                "pstlAdr": {
+                  "adrTp": "MLTO",
+                  "dept": "Invoicee Departement",
+                  "subDept": "Invoicee Sub-Departement",
+                  "strtNm": "Invoicee street name",
+                  "bldgNb": "123",
+                  "pstCd": "1110032",
+                  "twnNm": "Invocee City",
+                  "ctrySubDvsn": "AL",
+                  "ctry": "US",
+                  "adrLines": [
+                    "Invoicee Address Line 1",
+                    "Invoicee Address Line 2",
+                    "Invoicee Address Line 3",
+                    "Invoicee Address Line 4",
+                    "Invoicee Address Line 5",
+                    "Invoicee Address Line 6",
+                    "Invoicee Address Line 7"
+                  ]
+                },
+                "id": {
+                  "prvtId": {
+                    "dtAndPlcOfBirth": {
+                      "birthDt": 1068402600000,
+                      "prvcOfBirth": "Gahta",
+                      "cityOfBirth": "Mumbai",
+                      "ctryOfBirth": "US"
+                    },
+                    "othrs": [
+                      {
+                        "id": "Othr Id",
+                        "schmeNm": {
+                          "prtry": null,
+                          "cd": "TXID"
+                        },
+                        "issr": "Invee Issuer"
+                      }
+                    ]
+                  },
+                  "orgId": null
+                },
+                "ctryOfRes": "US",
+                "ctctDtls": null
+              },
+              "taxRmt": null,
+              "grnshmtRmt": null,
+              "addtlRmtInves": [
+                "AddtlRmtInf 1",
+                "AddtlRmtInf 2",
+                "AddtlRmtInf 3"
+              ]
+            }
+          ]
+        },
+        "splmtryDatas": []
       }
     },
-    "splmtryData": [
+    "splmtryDatas": [
       {
         "plcAndNm": null,
         "envlp": {
@@ -175,13 +480,16 @@
             "clntAddtn": null,
             "bizInf": {
               "chanlCd": "INB",
-              "acctClsr": null,
-              "rgltryOvrrd": null,
-              "chrgsWvd": null,
-              "chrgsApldAmt": null,
+              "acctClsr": true,
+              "rgltryOvrrd": true,
+              "chrgsWvd": true,
+              "chrgsApldAmt": {
+                "value": 100,
+                "ccy": "USD"
+              },
               "txTpCd": null,
-              "rcvrFIInf": null,
-              "xchgRateDealId": null
+              "rcvrFIInf": "process of executing a programapplication with the intent of identifying bugs. I like to defineTesting as the process of validating that a piece of software meetsits business and technical req195",
+              "xchgRateDealId": "Max35Texttttttttttttttttttttttttttt"
             }
           }
         }
