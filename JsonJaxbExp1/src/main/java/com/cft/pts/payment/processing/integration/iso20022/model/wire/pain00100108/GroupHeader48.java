@@ -19,6 +19,8 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import com.sample.boot.MyUtils;
+
 
 /**
  * <p>Java class for GroupHeader48 complex type.
@@ -122,6 +124,18 @@ public class GroupHeader48
      */
     public void setCreDtTm(XMLGregorianCalendar value) {
         this.creDtTm = value;
+    }
+    
+    /**
+     * Sets the value of the creDtTm property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setCreDtTm(String value) {
+        this.creDtTm = MyUtils.convertStringToCalender(value);
     }
 
     /**

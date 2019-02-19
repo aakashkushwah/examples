@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/akSchema"
+	xmlns:tns="http://www.example.org/akSchema">
+	<element name="doc" type="tns:root" />
+	<complexType name="root">
+		<sequence>
+			<element name="firstElement" type="string"></element>
+			<element name="secondElement" type="string"></element>
+		</sequence>
+	</complexType>
+
+</schema>
