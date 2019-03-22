@@ -108,6 +108,9 @@ public class Test {
 		System.out.println("Subset between Donna and John (Inclusive): " + ssBetwenDonnaAndJohn2);
 		SortedSet<String> ssDonnaAndAfter = names.tailSet("Donna");
 		System.out.println("Subset from Donna onwards: " + ssDonnaAndAfter);
+		
+		System.out.println("JVM Bit size: " + System.getProperty("sun.arch.data.model"));
+		System.out.println("JVM Bit size: " + System.getProperty("os.arch"));
 
 	}
 

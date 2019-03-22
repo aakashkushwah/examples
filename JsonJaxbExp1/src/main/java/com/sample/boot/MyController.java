@@ -46,7 +46,7 @@ public class MyController {
 
 	@RequestMapping("/postgreeting")
 	public Greeting greeting(@RequestBody Greeting greeting) {
-		greeting.setContent("By Aakash");
+		greeting.setContent("By Aakash2");
 		return greeting;
 	}
 

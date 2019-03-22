@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -16,6 +18,7 @@ import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.ak.Root;
@@ -46,11 +49,21 @@ public class AkUtils {
 	}
 
 	public static void main(String[] args) throws IOException {
-		int[][] arr = new int[5][2];
-		System.out.println(arr.length);
-		String parent = null;
-		File file = new File(parent, "aakash.txt");
-		file.createNewFile();
+//		int[][] arr = new int[5][2];
+//		System.out.println(arr.length);
+//		String parent = null;
+//		File file = new File(parent, "aakash.txt");
+//		file.createNewFile();
+		
+		List<String> lines = new ArrayList<>();
+		lines.add("abc");
+		lines.add("   ");
+		lines.add("cde");
+		lines.add("   ");
+		lines.add("abc");
+		lines.stream().filter(StringUtils::isNotBlank).forEach(System.out::println);
+		
+		System.out.println(lines.get(0).substring(4, 6));
 	}
 	
 	public static void copyFile(MultipartFile file) {

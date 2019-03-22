@@ -1,0 +1,103 @@
+<Document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:pts2:wire:iso:20022:tech:xsd:pain.001.001.08:V08" xsi:schemaLocation="urn:pts2:wire:iso:20022:tech:xsd:pain.001.001.08:V05 pain.001.001.08.wire.xsd">
+  <CstmrCdtTrfInitn>
+    <GrpHdr>
+      <MsgId>user11550925564401</MsgId>
+      <CreDtTm>2019-02-23T18:05:10</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <InitgPty>
+        <Nm>GPTS</Nm>
+      </InitgPty>
+    </GrpHdr>
+    <PmtInf>
+      <PmtInfId>NOTPROVIDED</PmtInfId>
+      <PmtMtd>TRF</PmtMtd>
+      <PmtTpInf>
+        <SvcLvl>
+          <Prtry>1</Prtry>
+        </SvcLvl>
+        <LclInstrm>
+          <Cd>SVC</Cd>
+        </LclInstrm>
+      </PmtTpInf>
+      <ReqdExctnDt>
+        <Dt>2019-02-23</Dt>
+      </ReqdExctnDt>
+      <Dbtr>
+        <Nm>JOHN</Nm>
+        <PstlAdr>
+          <AdrLine>ADDRESS 1</AdrLine>
+          <AdrLine>ADDRESS 2</AdrLine>
+        </PstlAdr>
+      </Dbtr>
+      <DbtrAcct>
+        <Id>
+          <Othr>
+            <Id>123344556</Id>
+            <SchmeNm>
+              <Cd>ACNU</Cd>
+            </SchmeNm>
+          </Othr>
+        </Id>
+      </DbtrAcct>
+      <DbtrAgt>
+        <FinInstnId>
+          <ClrSysMmbId>
+            <ClrSysId>
+              <Cd>USABA</Cd>
+            </ClrSysId>
+            <MmbId>211274382</MmbId>
+          </ClrSysMmbId>
+          <Nm>JPMORGAN CHASE</Nm>
+        </FinInstnId>
+      </DbtrAgt>
+      <CdtTrfTxInf>
+        <PmtId>
+          <EndToEndId>NOTPROVIDED</EndToEndId>
+        </PmtId>
+        <Amt>
+          <InstdAmt Ccy="USD">24</InstdAmt>
+        </Amt>
+        <CdtrAgt>
+          <FinInstnId>
+            <ClrSysMmbId>
+              <ClrSysId>
+                <Cd>USABA</Cd>
+              </ClrSysId>
+              <MmbId>256078446</MmbId>
+            </ClrSysMmbId>
+            <Nm>PENTAGON FEDERAL</Nm>
+          </FinInstnId>
+        </CdtrAgt>
+        <Cdtr>
+          <Nm>SMIT</Nm>
+          <PstlAdr>
+            <AdrLine>ADDRESS 1</AdrLine>
+          </PstlAdr>
+        </Cdtr>
+        <CdtrAcct>
+          <Id>
+            <Othr>
+              <Id>1234567011</Id>
+              <SchmeNm>
+                <Cd>ACNU</Cd>
+              </SchmeNm>
+            </Othr>
+          </Id>
+        </CdtrAcct>
+        <InstrForDbtrAgt>20180706B1QGC08C751239*</InstrForDbtrAgt>
+        <RmtInf>
+          <Ustrd>You sfdfg sfg ss sfdg  sf dfg sf gs f</Ustrd>
+        </RmtInf>
+      </CdtTrfTxInf>
+    </PmtInf>
+    <SplmtryData>
+      <Envlp>
+        <AddtlInf>
+          <BizInf>
+            <ChanlCd>MANUAL</ChanlCd>
+          </BizInf>
+        </AddtlInf>
+      </Envlp>
+    </SplmtryData>
+  </CstmrCdtTrfInitn>
+</Document>
