@@ -16,9 +16,9 @@ public class Main {
 //        bubbleSort(arr);
 //        selectionSort(arr);
 //        insertionSort1(arr);
-//        insertionSort2(arr);
+        insertionSort2(arr);
 //        shellSort(arr);
-        insertionSortRecursive(arr);
+//        insertionSortRecursive(arr);
     }
 
 
@@ -60,8 +60,10 @@ public class Main {
         for (int i = 1; i <len ; i++) {
             int newEle = arr[i];
             int j;
+            int k = 0;
             for (j = i; j >0 && arr[j-1] > newEle ; j--) {
                 arr[j] = arr[j-1];
+                System.out.println(++k);
             }
             arr[j] = newEle;
             Utils.printArray(arr);
