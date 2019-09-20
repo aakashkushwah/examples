@@ -4,30 +4,26 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 public class Solution9 {
+
+    private static HashMap<String, Integer> countMap = new HashMap<>();
 
     static long getCount(String s) {
         int count = 0;
         int N = s.length();
         char[] chars = s.toCharArray();
         List<String> subs = new ArrayList<>();
-        for (int i = 2; i < N; i++) {
-            for (int j = 0; N - j >= i; j++) {
-                char[] subChars = new char[i];
-                System.arraycopy(chars, j, subChars, 0, i);
-                subs.add(String.valueOf(subChars));
+        for (int i = 0; i < N; i++){
+            for (int j = i + 1; j <= N; j++) {
+                subs.add(s.substring(i, j));
             }
         }
         for (String str :
                 subs) {
             count += getPalindromicBorderCount(str);
         }
-        count+=getPalindromicBorderCount(s);
         return count;
     }
 
@@ -44,29 +40,38 @@ public class Solution9 {
         return result.intValue();
     }
 
-    private static boolean isPalindrome(String s){
+    private static boolean isPalindrome(String s) {
         return new StringBuffer(s).reverse().toString().equals(s);
     }
 
     private static int getPalindromicBorderCount(String s) {
-        int count = 0;
-        int l = s.length();
-        if (l == 2) {
-            return s.charAt(0) == s.charAt(1) ? 1 :0;
-        }
-        StringBuffer sb = new StringBuffer(s);
+        Integer storedCount = countMap.get(s);
+        if(storedCount == null){
+            int count = 0;
+            int l = s.length();
+            if( l == 1){
+                return 0;
+            }
+            if (l == 2) {
+                return s.charAt(0) == s.charAt(1) ? 1 : 0;
+            }
+            StringBuffer sb = new StringBuffer(s);
 
-        for(int i=1;i<=l-1;i++){
-            String left = sb.substring(0,i);
-            if(isPalindrome(left)){
-                String right = sb.substring(l-i,l);
-                if(left.equals(right)){
-                    count++;
+            for (int i = 1; i <= l - 1; i++) {
+                String left = sb.substring(0, i);
+                if (isPalindrome(left)) {
+                    String right = sb.substring(l - i, l);
+                    if (left.equals(right)) {
+                        count++;
+                    }
                 }
             }
+            countMap.put(s,count);
+            storedCount = count;
         }
 
-        return count;
+
+        return storedCount;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
