@@ -9,7 +9,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<dbh2.version>1.4.187</dbh2.version>
+		<dbh2.version>2.0.206</dbh2.version>
 		<atomikos-version>4.0.4</atomikos-version>
 	</properties>
 
